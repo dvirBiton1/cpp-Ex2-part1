@@ -18,24 +18,24 @@
 using namespace std;
 using namespace ariel;
 
-/**
- * Returns the input string without the whitespace characters: space, newline and tab.
- * Requires std=c++2a.
- */
-string nospaces(string input) {
-	std::erase(input, ' ');
-	std::erase(input, '\t');
-	std::erase(input, '\n');
-	std::erase(input, '\r');
-	return input;
-}
-
-
 TEST_CASE("Good input") {
 	ariel::Notebook n;
-    CHECK((n.read(0, 0, 0, Direction::Horizontal, 5)) == ("hello"));
-	CHECK((n.read(0, 0, 0, Direction::Horizontal, 5)) == ("hello"));
-	CHECK((n.read(0, 0, 0, Direction::Horizontal, 5)) == ("hello"));
+	n.write(0,0,0,Direction::Horizontal, "stam");
+    CHECK((n.read(0, 0, 0, Direction::Horizontal, 4)) == ("stam"));
+	n.write(1,15,15,Direction::Horizontal, "stam");
+    CHECK((n.read(1,15,15, Direction::Horizontal, 4)) == ("stam"));
+	n.write(2,10,10,Direction::Vertical, "stam");
+    CHECK((n.read(2,10,10, Direction::Vertical, 4)) == ("stam"));
+
+	CHECK((n.read(3, 0, 0, Direction::Horizontal, 4)) == ("____"));
+	n.write(/*page=*/100, /*row=*/100, /*column=*/50, Direction::Horizontal, "abcd");
+	CHECK(n.read(/*page=*/100, /*row=*/99, /*column=*/51, Direction::Vertical, /*length=*/3) == "_b_") ;  
+		// prints "_b_" (starts at row 99 which is empty; then at row 100 there is "b"; then row 101 is empty again).
+	// n.write(/*page=*/100, /*row=*/99, /*column=*/52, Direction::Vertical, "xyz");
+	// 	// throws error because writing the letter y will intersect with the letter c
+	n.erase(/*page=*/100, /*row=*/99, /*column=*/51, Direction::Vertical, /*length=*/3);
+		// writes ~ instead of _ in line 99, b in line 100 and _ again in line 99
+	CHECK((n.read(100, 99, 51, Direction::Horizontal, 3)) == ("~~~"));
 	CHECK((n.read(0, 0, 0, Direction::Horizontal, 5)) == ("hello"));
 	
     CHECK((n.read(0, 0, 0, Direction::Horizontal, 5)) == ("hello"));
