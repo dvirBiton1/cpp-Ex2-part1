@@ -15,10 +15,10 @@ namespace ariel{
             return;
         }
         // ~Notebook();
-        void write(unsigned int page, unsigned int row, unsigned int col, Direction dir, string s);
-        string read(unsigned int page, unsigned int row, unsigned int col, Direction dir, unsigned int numOfChars);
-        void erase(unsigned int page, unsigned int row, unsigned int col, Direction dir, unsigned int numOfChars);
-        void show(unsigned int page);
+        void write(int page,  int row,  int col, Direction dir, string s);
+        string read( int page,  int row,  int col, Direction dir,  int numOfChars);
+        void erase( int page,  int row,  int col, Direction dir,  int numOfChars);
+        void show( int page);
     };
     
     // Notebook::Notebook(/* args */)

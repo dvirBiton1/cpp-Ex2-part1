@@ -49,7 +49,7 @@ TEST_CASE("NOT THROW")
 TEST_CASE("bad input")
 {
 	Notebook n;
-	for (unsigned int i = 2; i < 20; i++)
+	for (int i = 2; i < 20; i++)
 	{
 		CHECK_THROWS(n.erase(0, 0, 99, Direction::Horizontal, i)); // col + numofchars >= 100
 	}

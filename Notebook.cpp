@@ -7,15 +7,15 @@
 using namespace std;
 namespace ariel
 {
-    void Notebook::write(unsigned int page, unsigned int row, unsigned int col, Direction dir, string s)
+    void Notebook::write( int page,  int row,  int col, Direction dir, string s)
     {
-        unsigned int len = s.length();
+        int len = s.length();
         if (col + len > 100 && dir == Direction::Horizontal)
         {
             throw runtime_error("you can't erase more then 100 charcters");
         }
     }
-    string Notebook::read(unsigned int page, unsigned int row, unsigned int col, Direction dir, unsigned int numOfChars)
+    string Notebook::read( int page,  int row,  int col, Direction dir,  int numOfChars)
     {
         if (col + numOfChars > 100 && dir == Direction::Horizontal)
         {
@@ -71,14 +71,14 @@ namespace ariel
         }
         return "hello";
     }
-    void Notebook::erase(unsigned int page, unsigned int row, unsigned int col, Direction dir, unsigned int numOfChars)
+    void Notebook::erase( int page,  int row,  int col, Direction dir,  int numOfChars)
     {
         if (col + numOfChars > 100 && dir == Direction::Horizontal)
         {
             throw runtime_error("you can't erase more then 100 charcters");
         }
     }
-    void Notebook::show(unsigned int page)
+    void Notebook::show( int page)
     {
         cout << "show func\n";
     }
